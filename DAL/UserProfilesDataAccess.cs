@@ -90,5 +90,46 @@ namespace DSN.DAL
             return users;
         }
 
+        //func to return list of expense model view
+        public List<ExpenseViewModel> GetExpenseNeeds(int userId)
+        {
+            var results = new List<ExpenseViewModel>();
+
+            List<DbParameter> parameters = new List<DbParameter>
+            {
+                new SqlParameter("userId", userId)
+            };
+            using (IDataReader reader = ExecuteReader("GetExpenseNeeds", DbCommandType.StoredProcedure, parameters))
+            {
+                while (reader.Read())
+                {
+                    ExpenseViewModel expense = new ExpenseViewModel
+                    {
+                        Id = (int)reader["Id"],
+                        UserId = (int)reader["User_Id"],
+                        Title = (string)reader["Title"],
+                        Description = (string)reader["Description"],
+                        ActualAmout = (int)reader["Actual Amount"],
+                        BalanceAmount = (int)reader["Balance Amount"]
+                    };
+                    results.Add(expense);
+                }
+            }
+
+            return results;
+        }
+
+        public void AddDonationRecord(int donorId, int expenseId, int donationAmount, int beneficiaryUserId)
+        {
+            List<DbParameter> parameters = new List<DbParameter>
+            {
+                new SqlParameter("donorId", donorId),
+                new SqlParameter("expenseId", expenseId),
+                new SqlParameter("donationAmount", donationAmount),
+                new SqlParameter("beneficiaryUserId", beneficiaryUserId)
+            };
+            int res = ExecuteStoredProcNonQuery("AddDonationRecord", parameters);
+        }
+
     }
 }

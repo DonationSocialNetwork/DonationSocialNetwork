@@ -69,6 +69,9 @@
     <Build Include="Stored Procedures\GetNetwork.sql" />
     <Build Include="Tables\Need.sql" />
     <Build Include="Stored Procedures\GetApprovals.sql" />
+    <Build Include="Stored Procedures\GetExpenseNeeds.sql" />
+    <Build Include="Tables\Donation.sql" />
+    <Build Include="Stored Procedures\AddDonationRecord.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="DSNDb.refactorlog" />

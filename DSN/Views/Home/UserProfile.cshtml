@@ -14,7 +14,7 @@
 {
     <div class="col-md-6 col-md-offset-3 well well-lg">
         <div>
-            <a><h3>@Html.DisplayFor(modelitem => expense.Title)</h3></a>
+            <a href="@Url.Action("DonatePay","Home", new { beneficiaryUserId = individual.Id, expenseId = expense.Id })"><h3>@Html.DisplayFor(modelitem => expense.Title)</h3></a>
             <p>Balance Amount: @Html.DisplayFor(modelitem => expense.BalanceAmount)</p>
             <p>Actual Amount: @Html.DisplayFor(modelitem => expense.ActualAmout)</p>
         </div>

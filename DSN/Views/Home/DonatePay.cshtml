@@ -1,0 +1,29 @@
+﻿@using System.Runtime.InteropServices
+@model dynamic
+@{
+    DSN.Models.ExpenseViewModel expense = Model.expense;
+    DSN.Models.IndividualViewModel beneficiaryUser = Model.beneficiaryUser;
+}
+<div class="jumbotron">
+    <div align="center">
+        <h2>Donate for</h2>
+        <h3>@Html.DisplayFor(modelitem => beneficiaryUser.Name)</h3>
+        <h3>@Html.DisplayFor(modelitem => beneficiaryUser.Title) at @Html.DisplayFor(modelitem => beneficiaryUser.Organisation)</h3>
+    </div>
+</div>
+
+<div class="col-md-6 col-md-offset-3 well well-lg">
+    <div>
+        <h3>@Html.DisplayFor(modelitem => expense.Title)</h3>
+        <p>Balance Amount: @Html.DisplayFor(modelitem => expense.BalanceAmount)</p>
+        <p>Actual Amount: @Html.DisplayFor(modelitem => expense.ActualAmout)</p>
+
+        <form method="post" action="DonatePayResult">
+            @Html.TextBox("donationAmount")
+            @Html.Hidden("beneficiaryUserId", beneficiaryUser.Id)
+            @Html.Hidden("expenseId", expense.Id)
+            <br /><button>Donate</button>
+        </form>
+
+    </div>
+</div>

@@ -269,6 +269,9 @@
     <Content Include="Views\Home\_ViewStart.cshtml" />
     <Content Include="Views\Home\NetWork.cshtml" />
     <Content Include="Views\Home\UserProfile.cshtml" />
+    <Content Include="Views\Home\DonatePay.cshtml" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Home\DonatePayResult.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

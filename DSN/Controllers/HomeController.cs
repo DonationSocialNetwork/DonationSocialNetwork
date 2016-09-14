@@ -48,8 +48,34 @@ namespace DSN.Controllers
             PopulateUsers();
             dynamic userProfile = new ExpandoObject();
             userProfile.user = users.Find(x => x.Id.Equals(userId));
-            userProfile.Expenses = expenses.FindAll(x => x.UserId.Equals(userId));
+            userProfile.Expenses = userProfilesDataAccess.GetExpenseNeeds(userId);// expenses.FindAll(x => x.UserId.Equals(userId));
             return View( userProfile);
+        }
+
+        public ActionResult DonatePay(int beneficiaryUserId, int expenseId)
+        {
+            PopulateUsers();
+            dynamic donationInfo = new ExpandoObject();
+            donationInfo.beneficiaryUser = users.Find(x => x.Id.Equals(beneficiaryUserId));
+            var Expenses = userProfilesDataAccess.GetExpenseNeeds(beneficiaryUserId);
+            donationInfo.expense = Expenses.Find(x => x.Id.Equals(expenseId));
+            return View(donationInfo);
+        }
+
+        public ActionResult DonatePayResult(int beneficiaryUserId, int expenseId, int donationAmount)
+        {
+            int donorId = 1; //for time being
+            try
+            {
+                userProfilesDataAccess.AddDonationRecord(donorId, expenseId, donationAmount, beneficiaryUserId);
+            }
+            catch (Exception e)
+            {
+                ViewBag.message = "Error!";
+                return View();
+            }
+            ViewBag.message = "Suceess! Thanks for donating.";
+            return View();
         }
 
         public ActionResult Pay()

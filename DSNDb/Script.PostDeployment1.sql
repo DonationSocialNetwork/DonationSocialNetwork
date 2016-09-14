@@ -11,9 +11,10 @@ Post-Deployment Script Template
 */
 DELETE FROM [dbo].[Graph];
 DELETE FROM [dbo].[Individual] ;
-DELETE FROM [dbo].[Organization] ;
-DELETE FROM [dbo].[User] ;
+DELETE FROM [dbo].[Organization];
+DELETE FROM [dbo].[Donation];
 DELETE FROM [dbo].[Need];
+DELETE FROM [dbo].[User];
 
 INSERT INTO [dbo].[User] 
 VALUES (1, 'individual')
@@ -56,8 +57,8 @@ VALUES (1, 2)
 ;
 
 INSERT INTO [Need]
-VALUES (1, 1, 'School Dress', 'School Dress', 500, 500, 11, 'P')
-, (2, 1, 'Admission fees', 'Admission fees', 1000, 1000, 11, 'P')
+VALUES (1, 2, 'School Dress', 'School Dress', 500, 500, 11, 'P')
+, (2, 2, 'Admission fees', 'Admission fees', 1000, 1000, 11, 'P')
 , (3, 1, 'Admission fees', 'Admission fees', 1000, 1000, 11, 'P')
 ;
 
