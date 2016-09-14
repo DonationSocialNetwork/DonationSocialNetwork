@@ -1,0 +1,50 @@
+﻿@using DSN.DAL
+@using DSN.Models
+@model List<ApprovalViewModel>
+@{
+    //Layout = null;
+}
+
+<h2>Approvals</h2>
+<table class="table">
+    <thead>
+    <tr>
+        <th>Need</th>
+        <th>Requester</th>
+        <th>Amount</th>
+        <th>Approval Status</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@Html.DisplayFor(x => item.NeedTitle)</td>
+            <td><a href="@Url.Action("UserProfile","Home", new { userId = item.UserId})">@Html.DisplayFor(x => item.UserName)</a></td>
+            <td>@Html.DisplayFor(x => item.ActualAmount)</td>
+            @if (item.ApprovalStatus.Equals(Constants.Approval.PendingApprovalCode))
+            {
+                <td>@Constants.Approval.PendingApproval</td>
+            }
+            else
+            {
+                <td>@Constants.Approval.Approved</td>
+            }
+            @if (item.ApprovalStatus.Equals(Constants.Approval.PendingApprovalCode))
+            {
+                <td>
+                    <a href="@Url.Action("Approve","Home",new { needId = item.NeedId })">Approve</a>
+                </td>
+            }
+            else
+            {
+                <td>None</td>
+            }
+            
+        </tr>
+    }
+    </tbody>
+</table>
+
+@Scripts.Render("~/Scripts/MyScripts/MyScript.js")

@@ -17,5 +17,7 @@ namespace DSN.Models
         public String NeedTitle { get; set; }
 
         public int ActualAmount { get; set; }
+
+        public string ApprovalStatus { get; set; }
     }
 }

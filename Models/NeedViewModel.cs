@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DSN.Models
 {
-    public class ExpenseViewModel
+    public class NeedViewModel
     {
         public int Id { get; set; }
 

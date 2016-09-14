@@ -1,0 +1,22 @@
+﻿@using DSN.Models
+@model LoginModel
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+</head>
+<body>
+@using (Html.BeginForm("Login", "Default", FormMethod.Post))
+{
+    @Html.Label("User Name")
+    @Html.TextBoxFor(m => m.Id)
+    @Html.Label("Password")
+    @Html.TextBoxFor(m => m.Password)
+    <input type="submit" value="Log in" class="btn btn-default" />
+}
+</body>
+</html>

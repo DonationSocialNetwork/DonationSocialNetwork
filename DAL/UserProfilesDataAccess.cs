@@ -58,7 +58,7 @@ namespace DSN.DAL
             };
             List<DbParameter> parameters = new List<DbParameter>
             {
-                new SqlParameter("Id", id)
+                new SqlParameter(Constants.Individual.Id, id)
             };
             using (IDataReader reader = ExecuteReader(Constants.SPROC.GetUsersNetwork, DbCommandType.StoredProcedure, parameters))
             {
@@ -88,6 +88,73 @@ namespace DSN.DAL
                 }
             }
             return users;
+        }
+
+        public List<ApprovalViewModel> GetApprovals(int approverId)
+        {
+            List<ApprovalViewModel> listOfApprovals = new List<ApprovalViewModel>();
+            List<DbParameter> parameters = new List<DbParameter>
+            {
+                new SqlParameter(Constants.Approval.ApproverId, approverId)
+            };
+            using (IDataReader reader = ExecuteReader(Constants.SPROC.GetApprovals, DbCommandType.StoredProcedure, parameters))
+            {
+                while (reader.Read())
+                {
+                    ApprovalViewModel approval = new ApprovalViewModel
+                    {
+                        NeedId = (int)reader[Constants.Need.Id],
+                        NeedTitle = (string)reader[Constants.Need.Title],
+                        ActualAmount = (int)reader[Constants.Need.ActualAmount],
+                        UserId = (int)reader[Constants.Need.User_Id],
+                        UserName = (string)reader[Constants.Individual.Name],
+                        ApprovalStatus = ((string)reader[Constants.Need.Approval_Status])
+                    };
+                    listOfApprovals.Add(approval);
+                }
+            }
+            return listOfApprovals;
+        }
+
+        //To-do: move to Logic layer
+        public List<ApprovalViewModel> GetPendingApprovals(int approverId)
+        {
+            List<ApprovalViewModel> listOfApprovals = GetApprovals(approverId);
+            List<ApprovalViewModel> listOfPendingApprovals = listOfApprovals.FindAll(x => x.ApprovalStatus.Equals(Constants.Approval.PendingApprovalCode));
+            foreach (var item in listOfPendingApprovals)
+            {
+                item.ApprovalStatus = Constants.Approval.PendingApproval;
+            }
+            return listOfPendingApprovals;
+        }
+
+        //To-do: move to Logic layer
+        public List<ApprovalViewModel> GetCompleteApprovals(int approverId)
+        {
+            List<ApprovalViewModel> listOfApprovals = GetApprovals(approverId);
+            List<ApprovalViewModel> listOfApprovedNeeds = listOfApprovals.FindAll(x => x.ApprovalStatus.Equals(Constants.Approval.ApprovedCode));
+            foreach (var item in listOfApprovedNeeds)
+            {
+                item.ApprovalStatus = Constants.Approval.Approved;
+            }
+            return listOfApprovedNeeds;
+        }
+        
+        public bool Approve(int needId)
+        {
+            bool isSuccess = false;
+            List<DbParameter> parameters = new List<DbParameter>
+            {
+                new SqlParameter(Constants.Parameters.NeedId, needId)
+            };
+            using ( IDataReader reader = ExecuteReader(Constants.SPROC.Approve, DbCommandType.StoredProcedure, parameters))
+            {
+                if (reader.RecordsAffected > 0)
+                {
+                    isSuccess = true;
+                }
+            }
+            return isSuccess;
         }
 
         //func to return list of expense model view

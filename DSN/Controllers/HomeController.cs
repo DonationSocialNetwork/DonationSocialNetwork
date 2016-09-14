@@ -10,17 +10,26 @@ using DSN.Models;
 
 namespace DSN.Controllers
 {
+    
     public class HomeController : Controller
     {
         private List<IndividualViewModel> users;
 
-        private List<ExpenseViewModel> expenses;
+        private List<NeedViewModel> expenses;
 
         UserProfilesDataAccess userProfilesDataAccess = new UserProfilesDataAccess();
 
+        public int UserId
+        {
+            get
+            {
+                return (int)Session[Constants.UserId];
+            }
+        }
+         
         public ActionResult Index()
         {
-            return View(userProfilesDataAccess.GetUsers(1));
+            return View(userProfilesDataAccess.GetUsers(UserId));
         }
 
         //public ActionResult Index()
@@ -34,15 +43,13 @@ namespace DSN.Controllers
             return View(userProfilesDataAccess.GetUsers());
         }
 
+
         //public ActionResult NetWork()
         //{
         //    PopulateUsers();
         //    return View(users);
         //}
 
-        /*
-        Expense(id, user_id, description, actual amount, balance amount, facilitator_id, approval status)
-        */
         public ActionResult UserProfile(int userId)
         {
             PopulateUsers();
@@ -78,6 +85,18 @@ namespace DSN.Controllers
             return View();
         }
 
+        public ActionResult Approvals()
+        {
+            return View(userProfilesDataAccess.GetApprovals(UserId));
+        }
+
+        public ActionResult Approve(int needId)
+        {
+            userProfilesDataAccess.Approve(needId);
+            List<ApprovalViewModel> approvals = userProfilesDataAccess.GetApprovals(UserId);
+            return RedirectToAction("Approvals");
+        }
+
         public ActionResult Pay()
         {
             return View();    
@@ -110,10 +129,10 @@ namespace DSN.Controllers
             {
                 return;
             }
-            expenses = new List<ExpenseViewModel>();
-            expenses.Add(new ExpenseViewModel {Id = 1, UserId = 2, Title = "Admission fees", ActualAmout = 1000, BalanceAmount = 500});
-            expenses.Add(new ExpenseViewModel { Id = 2, UserId = 2, Title = "Exam fees", ActualAmout = 1000, BalanceAmount = 500 });
-            expenses.Add(new ExpenseViewModel { Id = 3, UserId = 2, Title = "School picnic", ActualAmout = 1000, BalanceAmount = 500 });
+            expenses = new List<NeedViewModel>();
+            expenses.Add(new NeedViewModel {Id = 1, UserId = 2, Title = "Admission fees", ActualAmout = 1000, BalanceAmount = 500});
+            expenses.Add(new NeedViewModel { Id = 2, UserId = 2, Title = "Exam fees", ActualAmout = 1000, BalanceAmount = 500 });
+            expenses.Add(new NeedViewModel { Id = 3, UserId = 2, Title = "School picnic", ActualAmout = 1000, BalanceAmount = 500 });
 
         }
     }
