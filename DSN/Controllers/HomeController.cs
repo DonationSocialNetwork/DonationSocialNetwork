@@ -81,7 +81,7 @@ namespace DSN.Controllers
                 ViewBag.message = "Error!";
                 return View();
             }
-            ViewBag.message = "Suceess! Thanks for donating.";
+            ViewBag.message = "Success! Thanks for donating.";
             return View();
         }
 
