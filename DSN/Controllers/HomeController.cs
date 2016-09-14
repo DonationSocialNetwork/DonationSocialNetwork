@@ -71,7 +71,7 @@ namespace DSN.Controllers
 
         public ActionResult DonatePayResult(int beneficiaryUserId, int expenseId, int donationAmount)
         {
-            int donorId = 1; //for time being
+            int donorId = this.UserId;
             try
             {
                 userProfilesDataAccess.AddDonationRecord(donorId, expenseId, donationAmount, beneficiaryUserId);

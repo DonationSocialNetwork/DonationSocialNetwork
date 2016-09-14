@@ -158,9 +158,9 @@ namespace DSN.DAL
         }
 
         //func to return list of expense model view
-        public List<ExpenseViewModel> GetExpenseNeeds(int userId)
+        public List<NeedViewModel> GetExpenseNeeds(int userId)
         {
-            var results = new List<ExpenseViewModel>();
+            var results = new List<NeedViewModel>();
 
             List<DbParameter> parameters = new List<DbParameter>
             {
@@ -170,7 +170,7 @@ namespace DSN.DAL
             {
                 while (reader.Read())
                 {
-                    ExpenseViewModel expense = new ExpenseViewModel
+                    NeedViewModel expense = new NeedViewModel
                     {
                         Id = (int)reader["Id"],
                         UserId = (int)reader["User_Id"],
