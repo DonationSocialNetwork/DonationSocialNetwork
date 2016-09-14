@@ -1,5 +1,7 @@
 # DonationSocialNetwork
+
 To-do List:
+
 	1. Make expense dynamic from hard-code (Akash done)
 	2. Pay page (Akash done)
 	3. Approval page (Aditya done)
