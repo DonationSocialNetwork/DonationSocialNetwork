@@ -29,7 +29,7 @@ namespace DSN.Controllers
          
         public ActionResult Index()
         {
-            return View(userProfilesDataAccess.GetUsers(UserId));
+            return View(userProfilesDataAccess.GetNetwork(UserId));
         }
 
         //public ActionResult Index()
@@ -40,7 +40,7 @@ namespace DSN.Controllers
 
         public ActionResult NetWork()
         {
-            return View(userProfilesDataAccess.GetUsers());
+            return View(userProfilesDataAccess.GetNetwork());
         }
 
 

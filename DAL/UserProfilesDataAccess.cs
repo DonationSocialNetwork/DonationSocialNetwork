@@ -12,7 +12,7 @@ namespace DSN.DAL
 {
     public class UserProfilesDataAccess: DataAccessBase
     {
-        public UserViewModel  GetUsers()
+        public UserViewModel  GetNetwork()
         {
             UserViewModel users = new UserViewModel
             {
@@ -49,7 +49,7 @@ namespace DSN.DAL
             return users;
         }
 
-        public UserViewModel GetUsers(int id)
+        public UserViewModel GetNetwork(int id)
         {
             UserViewModel users = new UserViewModel
             {
