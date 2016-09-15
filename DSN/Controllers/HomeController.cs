@@ -112,6 +112,11 @@ namespace DSN.Controllers
             return View();    
         }
 
+        public ActionResult NeedsApproved()
+        {
+            return View(userProfilesDataAccess.GetApprovedNeedsDonationStatus(UserId));
+        }
+
         public void PopulateUsers()
         {
             if (users != null)

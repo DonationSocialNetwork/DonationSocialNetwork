@@ -18,6 +18,8 @@ namespace DSN.Models
 
         public int ActualAmount { get; set; }
 
+        public int BalanceAmount { get; set; }
+
         public string ApprovalStatus { get; set; }
     }
 }

@@ -31,6 +31,8 @@ namespace DSN.DAL
             public const string GetApprovals = "GetApprovals";
 
             public const string Approve = "Approve";
+
+            public const string GetApprovedNeedsDonationStatus = "GetApprovedNeedsDonationStatus";
         }
 
         public static class Parameters
@@ -76,9 +78,7 @@ namespace DSN.DAL
             public const string User_Id = "User_Id";
 
             public const string Approval_Status = "Approval_Status";
-
-            
-
+            public const string BalanceAmount = "Balance Amount";
         }
     }
 }

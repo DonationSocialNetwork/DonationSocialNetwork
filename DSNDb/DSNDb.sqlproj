@@ -74,6 +74,7 @@
     <Build Include="Stored Procedures\AddDonationRecord.sql" />
     <Build Include="Stored Procedures\Approve.sql" />
     <Build Include="Stored Procedures\GetDonations.sql" />
+    <Build Include="Stored Procedures\GetApprovedNeedsDonationStatus.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="DSNDb.refactorlog" />

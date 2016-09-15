@@ -1,0 +1,31 @@
+﻿@using DSN.DAL
+@using DSN.Models
+@model List<ApprovalViewModel>
+@{
+//Layout = null;
+}
+
+<h2>Needs Approved by me</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Need</th>
+            <th>Requester</th>
+            <th>Amount</th>
+            <th>Balance Amount</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(x => item.NeedTitle)</td>
+                <td>@Html.DisplayFor(x => item.UserName)</td>
+                <td>@Html.DisplayFor(x => item.ActualAmount)</td>
+                <td>@Html.DisplayFor(x=> item.BalanceAmount)</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@Scripts.Render("~/Scripts/MyScripts/MyScript.js")

@@ -116,6 +116,34 @@ namespace DSN.DAL
             return listOfApprovals;
         }
 
+        public List<ApprovalViewModel> GetApprovedNeedsDonationStatus(int approverId)
+        {
+            List<ApprovalViewModel> approvedNeedsWithDonationStatus = new List<ApprovalViewModel>();
+            List<DbParameter> parameters = new List<DbParameter>
+            {
+                new SqlParameter(Constants.Approval.ApproverId, approverId)
+            };
+
+            using (IDataReader reader = ExecuteReader(Constants.SPROC.GetApprovedNeedsDonationStatus,DbCommandType.StoredProcedure, parameters))
+            {
+                while (reader.Read())
+                {
+                    ApprovalViewModel approval = new ApprovalViewModel
+                    {
+                        NeedId = (int) reader[Constants.Need.Id],
+                        NeedTitle = (string) reader[Constants.Need.Title],
+                        ActualAmount = (int) reader[Constants.Need.ActualAmount],
+                        UserId = (int) reader[Constants.Need.User_Id],
+                        UserName = (string) reader[Constants.Individual.Name],
+                        BalanceAmount = (int) reader[Constants.Need.BalanceAmount]
+                    };
+                    approvedNeedsWithDonationStatus.Add(approval);
+                }
+            }
+
+            return approvedNeedsWithDonationStatus;
+        }
+
         //To-do: move to Logic layer
         public List<ApprovalViewModel> GetPendingApprovals(int approverId)
         {

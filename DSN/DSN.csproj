@@ -278,6 +278,7 @@
     <Content Include="Views\Default\Login.cshtml" />
     <Content Include="Views\Home\MyAccount.cshtml" />
     <Content Include="Views\Home\MyDonations.cshtml" />
+    <Content Include="Views\Home\NeedsApproved.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
