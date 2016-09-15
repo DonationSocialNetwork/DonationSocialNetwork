@@ -263,5 +263,42 @@ namespace DSN.DAL
 
         }
 
+        public List<RecDonationViewModel> GetReceivedDonations(int beneficiaryId)
+        {
+
+            var results = new List<RecDonationViewModel>();
+
+            List<DbParameter> parameters = new List<DbParameter>
+            {
+                new SqlParameter("beneficiaryId", beneficiaryId)
+            };
+            using (IDataReader reader = ExecuteReader("GetReceivedDonations", DbCommandType.StoredProcedure, parameters))
+            {
+                while (reader.Read())
+                {
+                    RecDonationViewModel donation = new RecDonationViewModel
+                    {
+                        expenseId = (int)reader["expenseId"],
+
+                        expenseName = (string)reader["expenseName"],
+
+                        donorId = (int)reader["donorId"],
+
+                        donorName = (string)reader["donorName"],
+
+                        donationTime = (DateTime)reader["donationTime"],
+
+                        donationAmt = (int)reader["donationAmt"]
+
+                    };
+
+                    results.Add(donation);
+                }
+            }
+
+            return results;
+
+        }
+
     }
 }
