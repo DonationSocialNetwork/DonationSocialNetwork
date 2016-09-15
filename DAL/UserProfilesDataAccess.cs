@@ -198,5 +198,42 @@ namespace DSN.DAL
             int res = ExecuteStoredProcNonQuery("AddDonationRecord", parameters);
         }
 
+        public List<DonationViewModel> GetDonations(int donorId)
+        {
+
+            var results = new List<DonationViewModel>();
+
+            List<DbParameter> parameters = new List<DbParameter>
+            {
+                new SqlParameter("donorId", donorId)
+            };
+            using (IDataReader reader = ExecuteReader("GetDonations", DbCommandType.StoredProcedure, parameters))
+            {
+                while (reader.Read())
+                {
+                    DonationViewModel donation = new DonationViewModel
+                    {
+                        expenseId = (int)reader["expenseId"],
+                       
+                        expenseName = (string)reader["expenseName"],
+
+                        beneficiaryId = (int)reader["beneficiaryId"],
+
+                        beneficiaryName = (string)reader["beneficiaryName"],
+
+                        donationTime = (DateTime)reader["donationTime"],
+
+                        donationAmt = (int)reader["donationAmt"]
+
+                    };
+
+                    results.Add(donation);
+                }
+            }
+
+            return results;
+
+        }
+
     }
 }

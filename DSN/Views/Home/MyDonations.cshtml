@@ -1,0 +1,33 @@
+﻿@using DSN.DAL
+@using DSN.Models
+@model List<DonationViewModel>
+@{
+//Layout = null;
+}
+
+<h2>My Donations</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Need Id</th>
+            <th>Need Name</th>
+            <th>Beneficiary Name</th>
+            <th>Donation Amount</th>
+            <th>Donation Time</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(x => item.expenseId)</td>
+                <td>@Html.DisplayFor(x => item.expenseName)</td>
+                <td><a href="@Url.Action("UserProfile","Home", new { userId = item.beneficiaryId})">@Html.DisplayFor(x => item.beneficiaryName)</a></td>
+                <td>@Html.DisplayFor(x => item.donationAmt)</td>
+                <td>@Html.DisplayFor(x => item.donationTime)</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@Scripts.Render("~/Scripts/MyScripts/MyScript.js")

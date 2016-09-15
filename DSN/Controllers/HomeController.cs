@@ -50,6 +50,11 @@ namespace DSN.Controllers
         //    return View(users);
         //}
 
+        public ActionResult MyDonations()
+        {
+            return View(userProfilesDataAccess.GetDonations(this.UserId));
+        }
+
         public ActionResult UserProfile(int userId)
         {
             PopulateUsers();
