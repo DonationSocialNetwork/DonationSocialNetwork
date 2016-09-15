@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApprovalViewModel.cs" />
+    <Compile Include="DonationViewModel.cs" />
     <Compile Include="LoginModel.cs" />
     <Compile Include="NeedViewModel.cs" />
     <Compile Include="OrganizationViewModel.cs" />
