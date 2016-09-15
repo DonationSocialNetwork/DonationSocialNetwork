@@ -124,17 +124,14 @@ namespace DSN.Controllers
                 return;
             }
             users = new List<IndividualViewModel>();
-            users.Add(new IndividualViewModel {Id = 1, Name = "Aditya", Title = "Student", Organisation = "MTB School", BalanceAmount = 1000});
-            users.Add(new IndividualViewModel {Id = 2, Name = "Pallavi", Title = "Student", Organisation = "Kothari Primary School", BalanceAmount = 1000 });
-            users.Add(new IndividualViewModel {Id = 3, Name = "Arvind", Title = "Student", Organisation = "MTB School", BalanceAmount = 1000 });
-            users.Add(new IndividualViewModel {Id = 4, Name = "Parth", Title = "Student", Organisation = "MTB School", BalanceAmount = 1000 });
-            users.Add(new IndividualViewModel {Id = 5, Name = "Komal", Title = "Student", Organisation = "MTB School", BalanceAmount = 1000 });
-            users.Add(new IndividualViewModel {Id = 6, Name = "Pallavi", Title = "Student", Organisation = "MTB School", BalanceAmount = 1000 });
-            users.Add(new IndividualViewModel {Id = 7, Name = "Samrudhdhi", Title = "Student", Organisation = "MTB School", BalanceAmount = 1000 });
-            users.Add(new IndividualViewModel {Id = 8, Name = "Mira", Title = "Student", Organisation = "MTB School", BalanceAmount = 1000 });
-            users.Add(new IndividualViewModel {Id = 9, Name = "Prerana", Title = "Student", Organisation = "MTB School", BalanceAmount = 1000 });
-            users.Add(new IndividualViewModel {Id = 10, Name = "Payal", Title = "Student", Organisation = "MTB School", BalanceAmount = 1000 });
-            users.Add(new IndividualViewModel {Id = 11, Name = "Vaishali", Title = "Student", Organisation = "MTB School", BalanceAmount = 1000 });
+            users.Add(new IndividualViewModel {Id = 1, Name = "Aditya", Title = "Student", Organisation = "MTB School"});
+            users.Add(new IndividualViewModel {Id = 2, Name = "Pallavi", Title = "Student", Organisation = "Kothari Primary School"});
+            users.Add(new IndividualViewModel {Id = 3, Name = "Prerana", Title = "Student", Organisation = "Jnanpith School" });
+            users.Add(new IndividualViewModel {Id = 4, Name = "Raghunath", Title = "Student", Organisation = "Golden Kids School" });
+            users.Add(new IndividualViewModel {Id = 5, Name = "Samrudhdhi", Title = "Student", Organisation = "Navodaya School" });
+            users.Add(new IndividualViewModel {Id = 6, Name = "Anup", Title = "Student", Organisation = "Vidya Mandir" });
+            users.Add(new IndividualViewModel {Id = 7, Name = "Tushar", Title = "Student", Organisation = "Shivaji High School" });
+            users.Add(new IndividualViewModel {Id = 8, Name = "Vishal", Title = "Student", Organisation = "Anjuman High school" });
             PopulateExpenses();
         }
 
