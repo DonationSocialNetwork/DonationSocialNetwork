@@ -9,7 +9,7 @@ AS
 	set @amt = @amt - @donationAmount
 	if(@amt<0)
 	begin
-		raiserror(N'too much amount',10,1)
+		raiserror(N'too much amount',10,1) --doesn't work, better error handling needed to be caught by backend code
 	end
 	
 	insert into Donation(Expense_id, Donor_id, [Timestamp], Amount) values(@donorId, @expenseId, GETDATE(), @donationAmount)

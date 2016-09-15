@@ -90,6 +90,11 @@ namespace DSN.Controllers
             return View(userProfilesDataAccess.GetApprovals(UserId));
         }
 
+        public ActionResult MyAccount()
+        {
+            return View();
+        }
+
         public ActionResult Approve(int needId)
         {
             userProfilesDataAccess.Approve(needId);
