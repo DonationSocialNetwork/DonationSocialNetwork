@@ -7,8 +7,8 @@ To-do List:
 	3. Approval page (Aditya done)
 		a. Pending (imp)
 		b. Complete
-	4. Login page (Aditya ~done)
+	4. Login page (Aditya done)
 	5. See donations (Akash)
 	6. See self needs (Akash)
-	7. See approved needs (Aditya)
-	8. Fetch user list from DB (Aditya)
+	7. See approved needs (Aditya done)
+	8. Fetch user list from DB (Aditya done)
