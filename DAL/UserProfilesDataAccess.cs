@@ -10,23 +10,23 @@ using DSN.Models;
 
 namespace DSN.DAL
 {
-    public class UserProfilesDataAccess: DataAccessBase
+    public class UserProfilesDataAccess : DataAccessBase
     {
-        public UserViewModel  GetNetwork()
+        public NetworkViewModel GetNetwork()
         {
-            UserViewModel users = new UserViewModel
+            NetworkViewModel users = new NetworkViewModel
             {
                 Individuals = new List<IndividualViewModel>(),
                 Organizations = new List<OrganizationViewModel>()
             };
-            using (IDataReader reader= ExecuteReader(Constants.SPROC.GetNetwork,DbCommandType.StoredProcedure))
+            using (IDataReader reader = ExecuteReader(Constants.SPROC.GetNetwork, DbCommandType.StoredProcedure))
             {
                 while (reader.Read())
                 {
                     IndividualViewModel individual = new IndividualViewModel
                     {
-                        Id = (int)reader[Constants.Individual.Id],
-                        Name = (string)reader[Constants.Individual.Name],
+                        Id = (int) reader[Constants.Individual.Id],
+                        Name = (string) reader[Constants.Individual.Name],
                         Title = (string) reader[Constants.Individual.Title],
                         Organisation = (string) reader[Constants.Individual.Organization]
                     };
@@ -44,14 +44,14 @@ namespace DSN.DAL
                         };
                         users.Organizations.Add(organization);
                     }
-                }            
+                }
             }
             return users;
         }
 
-        public UserViewModel GetNetwork(int id)
+        public NetworkViewModel GetNetwork(int id)
         {
-            UserViewModel users = new UserViewModel
+            NetworkViewModel users = new NetworkViewModel
             {
                 Individuals = new List<IndividualViewModel>(),
                 Organizations = new List<OrganizationViewModel>()
@@ -60,16 +60,18 @@ namespace DSN.DAL
             {
                 new SqlParameter(Constants.Individual.Id, id)
             };
-            using (IDataReader reader = ExecuteReader(Constants.SPROC.GetUsersNetwork, DbCommandType.StoredProcedure, parameters))
+            using (
+                IDataReader reader = ExecuteReader(Constants.SPROC.GetUsersNetwork, DbCommandType.StoredProcedure,
+                    parameters))
             {
                 while (reader.Read())
                 {
                     IndividualViewModel individual = new IndividualViewModel
                     {
-                        Id = (int)reader[Constants.Individual.Id],
-                        Name = (string)reader[Constants.Individual.Name],
-                        Title = (string)reader[Constants.Individual.Title],
-                        Organisation = (string)reader[Constants.Individual.Organization]
+                        Id = (int) reader[Constants.Individual.Id],
+                        Name = (string) reader[Constants.Individual.Name],
+                        Title = (string) reader[Constants.Individual.Title],
+                        Organisation = (string) reader[Constants.Individual.Organization]
                     };
                     users.Individuals.Add(individual);
                 }
@@ -79,9 +81,9 @@ namespace DSN.DAL
                     {
                         OrganizationViewModel organization = new OrganizationViewModel
                         {
-                            Id = (int)reader[Constants.Organization.Id],
-                            Name = (string)reader[Constants.Organization.Name],
-                            Description = (string)reader[Constants.Organization.Description]
+                            Id = (int) reader[Constants.Organization.Id],
+                            Name = (string) reader[Constants.Organization.Name],
+                            Description = (string) reader[Constants.Organization.Description]
                         };
                         users.Organizations.Add(organization);
                     }
@@ -97,18 +99,20 @@ namespace DSN.DAL
             {
                 new SqlParameter(Constants.Approval.ApproverId, approverId)
             };
-            using (IDataReader reader = ExecuteReader(Constants.SPROC.GetApprovals, DbCommandType.StoredProcedure, parameters))
+            using (
+                IDataReader reader = ExecuteReader(Constants.SPROC.GetApprovals, DbCommandType.StoredProcedure,
+                    parameters))
             {
                 while (reader.Read())
                 {
                     ApprovalViewModel approval = new ApprovalViewModel
                     {
-                        NeedId = (int)reader[Constants.Need.Id],
-                        NeedTitle = (string)reader[Constants.Need.Title],
-                        ActualAmount = (int)reader[Constants.Need.ActualAmount],
-                        UserId = (int)reader[Constants.Need.User_Id],
-                        UserName = (string)reader[Constants.Individual.Name],
-                        ApprovalStatus = ((string)reader[Constants.Need.Approval_Status])
+                        NeedId = (int) reader[Constants.Need.Id],
+                        NeedTitle = (string) reader[Constants.Need.Title],
+                        ActualAmount = (int) reader[Constants.Need.ActualAmount],
+                        UserId = (int) reader[Constants.Need.User_Id],
+                        UserName = (string) reader[Constants.Individual.Name],
+                        ApprovalStatus = ((string) reader[Constants.Need.Approval_Status])
                     };
                     listOfApprovals.Add(approval);
                 }
@@ -124,7 +128,9 @@ namespace DSN.DAL
                 new SqlParameter(Constants.Approval.ApproverId, approverId)
             };
 
-            using (IDataReader reader = ExecuteReader(Constants.SPROC.GetApprovedNeedsDonationStatus,DbCommandType.StoredProcedure, parameters))
+            using (
+                IDataReader reader = ExecuteReader(Constants.SPROC.GetApprovedNeedsDonationStatus,
+                    DbCommandType.StoredProcedure, parameters))
             {
                 while (reader.Read())
                 {
@@ -148,7 +154,8 @@ namespace DSN.DAL
         public List<ApprovalViewModel> GetPendingApprovals(int approverId)
         {
             List<ApprovalViewModel> listOfApprovals = GetApprovals(approverId);
-            List<ApprovalViewModel> listOfPendingApprovals = listOfApprovals.FindAll(x => x.ApprovalStatus.Equals(Constants.Approval.PendingApprovalCode));
+            List<ApprovalViewModel> listOfPendingApprovals =
+                listOfApprovals.FindAll(x => x.ApprovalStatus.Equals(Constants.Approval.PendingApprovalCode));
             foreach (var item in listOfPendingApprovals)
             {
                 item.ApprovalStatus = Constants.Approval.PendingApproval;
@@ -160,14 +167,15 @@ namespace DSN.DAL
         public List<ApprovalViewModel> GetCompleteApprovals(int approverId)
         {
             List<ApprovalViewModel> listOfApprovals = GetApprovals(approverId);
-            List<ApprovalViewModel> listOfApprovedNeeds = listOfApprovals.FindAll(x => x.ApprovalStatus.Equals(Constants.Approval.ApprovedCode));
+            List<ApprovalViewModel> listOfApprovedNeeds =
+                listOfApprovals.FindAll(x => x.ApprovalStatus.Equals(Constants.Approval.ApprovedCode));
             foreach (var item in listOfApprovedNeeds)
             {
                 item.ApprovalStatus = Constants.Approval.Approved;
             }
             return listOfApprovedNeeds;
         }
-        
+
         public bool Approve(int needId)
         {
             bool isSuccess = false;
@@ -175,7 +183,8 @@ namespace DSN.DAL
             {
                 new SqlParameter(Constants.Parameters.NeedId, needId)
             };
-            using ( IDataReader reader = ExecuteReader(Constants.SPROC.Approve, DbCommandType.StoredProcedure, parameters))
+            using (
+                IDataReader reader = ExecuteReader(Constants.SPROC.Approve, DbCommandType.StoredProcedure, parameters))
             {
                 if (reader.RecordsAffected > 0)
                 {
@@ -200,12 +209,12 @@ namespace DSN.DAL
                 {
                     NeedViewModel expense = new NeedViewModel
                     {
-                        Id = (int)reader["Id"],
-                        UserId = (int)reader["User_Id"],
-                        Title = (string)reader["Title"],
-                        Description = (string)reader["Description"],
-                        ActualAmout = (int)reader["Actual Amount"],
-                        BalanceAmount = (int)reader["Balance Amount"]
+                        Id = (int) reader["Id"],
+                        UserId = (int) reader["User_Id"],
+                        Title = (string) reader["Title"],
+                        Description = (string) reader["Description"],
+                        ActualAmout = (int) reader["Actual Amount"],
+                        BalanceAmount = (int) reader["Balance Amount"]
                     };
                     results.Add(expense);
                 }
@@ -241,17 +250,17 @@ namespace DSN.DAL
                 {
                     DonationViewModel donation = new DonationViewModel
                     {
-                        expenseId = (int)reader["expenseId"],
-                       
-                        expenseName = (string)reader["expenseName"],
+                        expenseId = (int) reader["expenseId"],
 
-                        beneficiaryId = (int)reader["beneficiaryId"],
+                        expenseName = (string) reader["expenseName"],
 
-                        beneficiaryName = (string)reader["beneficiaryName"],
+                        beneficiaryId = (int) reader["beneficiaryId"],
 
-                        donationTime = (DateTime)reader["donationTime"],
+                        beneficiaryName = (string) reader["beneficiaryName"],
 
-                        donationAmt = (int)reader["donationAmt"]
+                        donationTime = (DateTime) reader["donationTime"],
+
+                        donationAmt = (int) reader["donationAmt"]
 
                     };
 
@@ -272,23 +281,24 @@ namespace DSN.DAL
             {
                 new SqlParameter("beneficiaryId", beneficiaryId)
             };
-            using (IDataReader reader = ExecuteReader("GetReceivedDonations", DbCommandType.StoredProcedure, parameters))
+            using (IDataReader reader = ExecuteReader("GetReceivedDonations", DbCommandType.StoredProcedure, parameters)
+            )
             {
                 while (reader.Read())
                 {
                     RecDonationViewModel donation = new RecDonationViewModel
                     {
-                        expenseId = (int)reader["expenseId"],
+                        expenseId = (int) reader["expenseId"],
 
-                        expenseName = (string)reader["expenseName"],
+                        expenseName = (string) reader["expenseName"],
 
-                        donorId = (int)reader["donorId"],
+                        donorId = (int) reader["donorId"],
 
-                        donorName = (string)reader["donorName"],
+                        donorName = (string) reader["donorName"],
 
-                        donationTime = (DateTime)reader["donationTime"],
+                        donationTime = (DateTime) reader["donationTime"],
 
-                        donationAmt = (int)reader["donationAmt"]
+                        donationAmt = (int) reader["donationAmt"]
 
                     };
 
@@ -300,5 +310,81 @@ namespace DSN.DAL
 
         }
 
+        string GetUserType(int userId)
+        {
+            List<DbParameter> parameters = new List<DbParameter>
+            {
+                new SqlParameter("userId", userId)
+            };
+            string userType = "";
+            using (
+                IDataReader reader = ExecuteReader(Constants.SPROC.GetUserType, DbCommandType.StoredProcedure,
+                    parameters))
+            {
+                while (reader.Read())
+                {
+                    userType = (string) reader["Type"];
+                }
+            }
+            return userType;
+        }
+
+        public UserViewModel GetUser(int userId)
+        {
+            string userType = GetUserType(userId);
+            if (userType.Equals(Constants.UserType.Organization))
+            {
+                return GetOrganization(userId);
+            }
+            else
+            {
+                return GetIndividual(userId);
+            }
+        }
+
+        public IndividualViewModel GetIndividual(int userId)
+        {
+            List<DbParameter> parameters = new List<DbParameter>
+            {
+                new SqlParameter("id", userId)
+            };
+            IndividualViewModel individual = null;
+            using (IDataReader reader = ExecuteReader("GetIndividual", DbCommandType.StoredProcedure, parameters))
+            {
+                while (reader.Read())
+                {
+                    individual = new IndividualViewModel
+                    {
+                        Id = (int) reader[Constants.Individual.Id],
+                        Name = (string) reader[Constants.Individual.Name],
+                        Title = (string) reader[Constants.Individual.Title],
+                        Organisation = (string) reader[Constants.Individual.Organization]
+                    };
+                }
+            }
+            return individual;
+        }
+
+        public OrganizationViewModel GetOrganization(int userId)
+        {
+            List<DbParameter> parameters = new List<DbParameter>
+            {
+                new SqlParameter("id", userId)
+            };
+            OrganizationViewModel organization = null;
+            using (IDataReader reader = ExecuteReader("GetOrganization", DbCommandType.StoredProcedure, parameters))
+            {
+                while (reader.Read())
+                {
+                    organization = new OrganizationViewModel
+                    {
+                        Id = (int) reader[Constants.Organization.Id],
+                        Name = (string) reader[Constants.Organization.Name],
+                        Description = (string) reader[Constants.Organization.Description]
+                    };
+                }
+            }
+            return organization;
+        }
     }
 }

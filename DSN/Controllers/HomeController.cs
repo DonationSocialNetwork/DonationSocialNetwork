@@ -62,11 +62,18 @@ namespace DSN.Controllers
 
         public ActionResult UserProfile(int userId)
         {
-            PopulateUsers();
             dynamic userProfile = new ExpandoObject();
-            userProfile.user = users.Find(x => x.Id.Equals(userId));
-            userProfile.Expenses = userProfilesDataAccess.GetExpenseNeeds(userId);// expenses.FindAll(x => x.UserId.Equals(userId));
-            return View( userProfile);
+            UserViewModel user = userProfilesDataAccess.GetUser(userId);
+            userProfile.user = user;
+            userProfile.Expenses = userProfilesDataAccess.GetExpenseNeeds(userId);
+            if (user.GetType() == typeof(IndividualViewModel))
+            {
+                return View("UserProfile", userProfile);
+            }
+            else
+            {
+                return View("OrganizationProfile", userProfile);
+            }
         }
 
         public ActionResult DonatePay(int beneficiaryUserId, int expenseId)

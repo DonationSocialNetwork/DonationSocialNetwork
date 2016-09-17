@@ -8,6 +8,11 @@ namespace DSN.DAL
 {
     public static class Constants
     {
+        public static class UserType
+        {
+            public const string Organization = "organization";
+            public const string Individual = "individual";
+        }
         public static class Approval
         {
             public const string ApproverId = "approver_id";
@@ -33,6 +38,8 @@ namespace DSN.DAL
             public const string Approve = "Approve";
 
             public const string GetApprovedNeedsDonationStatus = "GetApprovedNeedsDonationStatus";
+
+            public const string GetUserType = "GetUserType";
         }
 
         public static class Parameters

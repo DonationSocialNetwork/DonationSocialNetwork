@@ -280,6 +280,7 @@
     <Content Include="Views\Home\MyDonations.cshtml" />
     <Content Include="Views\Home\NeedsApproved.cshtml" />
     <Content Include="Views\Home\ReceivedDonations.cshtml" />
+    <Content Include="Views\Home\OrganizationProfile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

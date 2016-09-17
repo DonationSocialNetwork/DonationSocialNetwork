@@ -1,13 +1,13 @@
 ﻿@using System.Runtime.InteropServices
 @model dynamic
 @{
-    DSN.Models.IndividualViewModel individual = Model.user;
+    DSN.Models.OrganizationViewModel organization = Model.user;
     List<DSN.Models.NeedViewModel> expenses = Model.Expenses;
 }
 <div class="jumbotron">
     <div align="center">
-        <h2>@Html.DisplayFor(modelitem => individual.Name)</h2>
-        <p>@Html.DisplayFor(modelitem => individual.Title) at @Html.DisplayFor(modelitem => individual.Organisation)</p>
+        <h2>@Html.DisplayFor(modelitem => organization.Name)</h2>
+        <p>@Html.DisplayFor(modelitem => organization.Description)</p>
     </div>
 </div>
 @foreach (var expense in expenses)
