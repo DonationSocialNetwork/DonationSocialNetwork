@@ -13,10 +13,6 @@ namespace DSN.Controllers
     
     public class HomeController : Controller
     {
-        private List<IndividualViewModel> users;
-
-        private List<NeedViewModel> expenses;
-
         UserProfilesDataAccess userProfilesDataAccess = new UserProfilesDataAccess();
 
         public int UserId
@@ -78,9 +74,9 @@ namespace DSN.Controllers
 
         public ActionResult DonatePay(int beneficiaryUserId, int expenseId)
         {
-            PopulateUsers();
             dynamic donationInfo = new ExpandoObject();
-            donationInfo.beneficiaryUser = users.Find(x => x.Id.Equals(beneficiaryUserId));
+            //donationInfo.beneficiaryUser = users.Find(x => x.Id.Equals(beneficiaryUserId));
+            donationInfo.beneficiaryUser = userProfilesDataAccess.GetUser(beneficiaryUserId) as IndividualViewModel;
             var Expenses = userProfilesDataAccess.GetExpenseNeeds(beneficiaryUserId);
             donationInfo.expense = Expenses.Find(x => x.Id.Equals(expenseId));
             return View(donationInfo);
@@ -129,35 +125,6 @@ namespace DSN.Controllers
             return View(userProfilesDataAccess.GetApprovedNeedsDonationStatus(UserId));
         }
 
-        public void PopulateUsers()
-        {
-            if (users != null)
-            {
-                return;
-            }
-            users = new List<IndividualViewModel>();
-            users.Add(new IndividualViewModel {Id = 1, Name = "Aditya", Title = "Student", Organisation = "MTB School"});
-            users.Add(new IndividualViewModel {Id = 2, Name = "Pallavi", Title = "Student", Organisation = "Kothari Primary School"});
-            users.Add(new IndividualViewModel {Id = 3, Name = "Prerana", Title = "Student", Organisation = "Jnanpith School" });
-            users.Add(new IndividualViewModel {Id = 4, Name = "Raghunath", Title = "Student", Organisation = "Golden Kids School" });
-            users.Add(new IndividualViewModel {Id = 5, Name = "Samrudhdhi", Title = "Student", Organisation = "Navodaya School" });
-            users.Add(new IndividualViewModel {Id = 6, Name = "Anup", Title = "Student", Organisation = "Vidya Mandir" });
-            users.Add(new IndividualViewModel {Id = 7, Name = "Tushar", Title = "Student", Organisation = "Shivaji High School" });
-            users.Add(new IndividualViewModel {Id = 8, Name = "Vishal", Title = "Student", Organisation = "Anjuman High school" });
-            PopulateExpenses();
-        }
-
-        public void PopulateExpenses()
-        {
-            if (expenses != null)
-            {
-                return;
-            }
-            expenses = new List<NeedViewModel>();
-            expenses.Add(new NeedViewModel {Id = 1, UserId = 2, Title = "Admission fees", ActualAmout = 1000, BalanceAmount = 500});
-            expenses.Add(new NeedViewModel { Id = 2, UserId = 2, Title = "Exam fees", ActualAmout = 1000, BalanceAmount = 500 });
-            expenses.Add(new NeedViewModel { Id = 3, UserId = 2, Title = "School picnic", ActualAmout = 1000, BalanceAmount = 500 });
-
-        }
+        
     }
 }
