@@ -12,3 +12,6 @@ To-do List:
 	6. See self needs (Akash)
 	7. See approved needs (Aditya done)
 	8. Fetch user list from DB (Aditya done)
+	9. Payment form
+           Resources:
+           http://www.flipkart.com/help/savedcard_how
