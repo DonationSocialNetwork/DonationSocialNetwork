@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DSN.Models
 {
-    public class OrganizationViewModel
+    public class OrganizationViewModel : UserViewModel
     {
         public int Id { get; set; }
 

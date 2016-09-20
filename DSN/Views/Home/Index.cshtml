@@ -1,5 +1,5 @@
 ﻿@using DSN.Models
-@model UserViewModel
+@model NetworkViewModel
 @{
     //Layout = null;
 }
@@ -26,7 +26,7 @@
         <div>
             <a href="@Url.Action("UserProfile","Home", new { userId = item.Id})"><h1>@Html.DisplayFor(modelitem => item.Name)</h1></a>
             <p>@Html.DisplayFor(modelitem => item.Description)</p>
-            <p>Balanced Amount: Rs. 1000</p>
+            @*<p>Balanced Amount: Rs. 1000</p>*@
         </div>
     </div>
 }

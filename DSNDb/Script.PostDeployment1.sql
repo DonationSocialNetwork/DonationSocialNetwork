@@ -57,8 +57,8 @@ VALUES (1, 2)
 ;
 
 INSERT INTO [Need]
-VALUES (1, 2, 'School Dress', 'School Dress', 500, 500, 11, 'P')
-, (2, 2, 'Admission fees', 'Admission fees', 1000, 1000, 11, 'P')
-, (3, 1, 'Admission fees', 'Admission fees', 1000, 1000, 11, 'P')
+VALUES (1, 2, 'School Dress', 'School Dress', 500, 500, 11, 'P', '20160930 11:59:00 PM')
+, (2, 2, 'Admission fees', 'Admission fees', 1000, 1000, 11, 'P', '20160930 11:59:00 PM')
+, (3, 1, 'Admission fees', 'Admission fees', 1000, 1000, 11, 'P', '20160930 11:59:00 PM')
 ;
 
