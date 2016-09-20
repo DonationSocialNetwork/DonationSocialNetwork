@@ -19,5 +19,7 @@ namespace DSN.Models
         public int ActualAmout { get; set; }
 
         public int BalanceAmount { get; set; }
+
+        public string DueDate { get; set; }
     }
 }

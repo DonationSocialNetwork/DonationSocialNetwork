@@ -17,6 +17,7 @@
             <a href="@Url.Action("DonatePay","Home", new { beneficiaryUserId = expense.UserId, expenseId = expense.Id })"><h3>@Html.DisplayFor(modelitem => expense.Title)</h3></a>
             <p>Balance Amount: @Html.DisplayFor(modelitem => expense.BalanceAmount)</p>
             <p>Actual Amount: @Html.DisplayFor(modelitem => expense.ActualAmout)</p>
+            <p>Due Date: @Html.DisplayFor(modelitem => expense.DueDate)</p>
         </div>
     </div>
 }

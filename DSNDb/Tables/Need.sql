@@ -6,7 +6,8 @@
     [Description] VARCHAR(50) NULL, 
     [Actual Amount] INT NOT NULL, 
     [Balance Amount] INT NOT NULL, 
-    [Facilitator_Id] INT NOT NULL, 
+    [Approver_Id] INT NOT NULL, 
     [Approval_Status] CHAR(1) NOT NULL, 
+    [Due Date] DATETIME NOT NULL, 
     CONSTRAINT [FK_Need_ToUser] FOREIGN KEY (User_Id) REFERENCES [User](Id)
 )

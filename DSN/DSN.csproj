@@ -281,6 +281,7 @@
     <Content Include="Views\Home\NeedsApproved.cshtml" />
     <Content Include="Views\Home\ReceivedDonations.cshtml" />
     <Content Include="Views\Home\OrganizationProfile.cshtml" />
+    <Content Include="Views\Home\AddNeed.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

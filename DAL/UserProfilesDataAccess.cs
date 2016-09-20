@@ -214,7 +214,8 @@ namespace DSN.DAL
                         Title = (string) reader["Title"],
                         Description = (string) reader["Description"],
                         ActualAmout = (int) reader["Actual Amount"],
-                        BalanceAmount = (int) reader["Balance Amount"]
+                        BalanceAmount = (int) reader["Balance Amount"],
+                        DueDate = ((DateTime) reader["Due Date"]).ToString("dd MMMM yyyy")
                     };
                     results.Add(expense);
                 }

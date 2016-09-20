@@ -10,3 +10,9 @@
 //    $(this).parent().parent().children(".status").text("Approved");
 //    $(this).replaceWith("None");
 //});
+
+
+
+$("#check").click(function(){
+        $("#merchant").collapse('show');
+});

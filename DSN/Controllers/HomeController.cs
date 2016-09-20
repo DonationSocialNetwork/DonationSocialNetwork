@@ -28,24 +28,11 @@ namespace DSN.Controllers
             return View(userProfilesDataAccess.GetNetwork(UserId));
         }
 
-        //public ActionResult Index()
-        //{
-        //    PopulateUsers();
-        //    return View(users.GetRange(0,6));
-        //}
-
         public ActionResult NetWork()
         {
             return View(userProfilesDataAccess.GetNetwork());
         }
-
-
-        //public ActionResult NetWork()
-        //{
-        //    PopulateUsers();
-        //    return View(users);
-        //}
-
+        
         public ActionResult MyDonations()
         {
             return View(userProfilesDataAccess.GetDonations(this.UserId));
@@ -125,6 +112,10 @@ namespace DSN.Controllers
             return View(userProfilesDataAccess.GetApprovedNeedsDonationStatus(UserId));
         }
 
+        public ActionResult AddNeed()
+        {
+            return View();
+        }
         
     }
 }
