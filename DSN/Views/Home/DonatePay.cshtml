@@ -15,47 +15,58 @@
 <div class="col-md-6 col-md-offset-3 well well-lg">
     <div>
         <h3 class="col-xs-12">@Html.DisplayFor(modelitem => expense.Title)</h3>
-        <p class="col-xs-12">Balance Amount: @Html.DisplayFor(modelitem => expense.BalanceAmount)</p>
-        <p class="col-xs-12">Actual Amount: @Html.DisplayFor(modelitem => expense.ActualAmout)</p>
+        <p class="col-xs-12"><b>Balance Amount: @Html.DisplayFor(modelitem => expense.BalanceAmount)</b></p>
+        <p class="col-xs-12"><b>Actual Amount: @Html.DisplayFor(modelitem => expense.ActualAmout)</b></p>
+        
+        <div class="col-xs-6"><input type="radio" name="payment" value="creditCard" onchange='$("#loyaltyPointsDiv").hide();$("#creditCardDiv").show();' checked="true"/> Pay by Visa Credit Card</div>
+        <div class="col-xs-6"><input type="radio" name="payment" value="loyaltyPoints" onchange='$("#creditCardDiv").hide();$("#loyaltyPointsDiv").show();'/> Pay by Visa Loyalty Points</div>
+        <br /><br />
 
-        <form method="post" action="DonatePayResult">
-            @*<div class="form-group">@Html.TextBox("creditCardNum", null, new { @class = "col-xs-8", @placeholder = "Credit Card" })</div>
-            <div>@Html.TextBox("expiryDate", null, new { @class = "col-xs-4", @placeholder = "Expiry Date" })</div>
-            <div>@Html.TextBox("CVV", null, new { @class = "col-xs-4", @placeholder = "CVV" })</div>
-            <div>@Html.TextBox("donationAmount", null, new { @class = "col-xs-8", @placeholder = "Your Donation Amount" })</div>*@
+        <div id="creditCardDiv">
+            <form method="post" action="DonatePayResult">
+                @*<div class="form-group">@Html.TextBox("creditCardNum", null, new { @class = "col-xs-8", @placeholder = "Credit Card" })</div>
+                <div>@Html.TextBox("expiryDate", null, new { @class = "col-xs-4", @placeholder = "Expiry Date" })</div>
+                <div>@Html.TextBox("CVV", null, new { @class = "col-xs-4", @placeholder = "CVV" })</div>
+                <div>@Html.TextBox("donationAmount", null, new { @class = "col-xs-8", @placeholder = "Your Donation Amount" })</div>*@
 
-            <div class="form-group col-xs-8">
-                <label for="creditCardNumber">CREDIT CARD NUMBER</label>
-                <input type="tel" class="form-control" id="creditCardNumber" placeholder="4111111111111111" value="4111111111111111" autocomplete="off" />
-            </div>
-            <div class="form-group col-xs-4">
-                <label for="cvv">CVV</label>
-                <input type="text" class="form-control" id="cvv" placeholder="123" autocomplete="off" />
-            </div>
-            
-            <div>
-
-                <div class="form-group col-xs-5">
-                    <label for="expiryDateYY">EXP. DATE</label>
-                    <input type="text" class="form-control" id="expiryDateYY" placeholder="YYYY" />
+                <div class="form-group col-xs-8">
+                    <label for="creditCardNumber">CREDIT CARD NUMBER</label>
+                    <input type="tel" class="form-control" id="creditCardNumber" placeholder="4111111111111111" value="4111111111111111" autocomplete="off" />
                 </div>
-
-                <div class="form-group col-xs-3">
-                    <label for="expiryDateMM" style="opacity: 0">MONTH</label>
-                    <input type="text" class="form-control" id="expiryDateMM" placeholder="MM" />
-                </div>
-
                 <div class="form-group col-xs-4">
-                    <label for="donationAmount">AMOUNT</label>
-                    <input type="text" class="form-control" id="donationAmount" name="donationAmount" placeholder="0.5" />
+                    <label for="cvv">CVV</label>
+                    <input type="text" class="form-control" id="cvv" placeholder="123" autocomplete="off" />
                 </div>
 
-            </div>
+                <div>
 
-            @Html.Hidden("beneficiaryUserId", beneficiaryUser.Id)
-            @Html.Hidden("expenseId", expense.Id)
-            <br /><div style="text-align: center; margin-top: 10%;"><button style="width: 95%;">Donate</button></div>
-        </form>
+                    <div class="form-group col-xs-5">
+                        <label for="expiryDateYY">EXP. DATE</label>
+                        <input type="text" class="form-control" id="expiryDateYY" placeholder="YYYY" />
+                    </div>
+
+                    <div class="form-group col-xs-3">
+                        <label for="expiryDateMM" style="opacity: 0">MONTH</label>
+                        <input type="text" class="form-control" id="expiryDateMM" placeholder="MM" />
+                    </div>
+
+                    <div class="form-group col-xs-4">
+                        <label for="donationAmount">AMOUNT</label>
+                        <input type="text" class="form-control" id="donationAmount" name="donationAmount" placeholder="0.5" />
+                    </div>
+
+                </div>
+
+                @Html.Hidden("beneficiaryUserId", beneficiaryUser.Id)
+                @Html.Hidden("expenseId", expense.Id)
+                <br /><div style="text-align: center; margin-top: 10%;"><button style="width: 95%;">Donate</button></div>
+            </form>
+        </div>
+
+        <div id="loyaltyPointsDiv" style="display:none; " class="form-group col-xs-8">
+                <b>Search for a merchant with whom you have Visa Supported Loyalty Points</b>
+                
+        </div>
 
     </div>
 </div>
