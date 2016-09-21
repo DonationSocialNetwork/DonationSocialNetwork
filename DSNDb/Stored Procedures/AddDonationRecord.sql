@@ -12,7 +12,7 @@ AS
 		raiserror(N'too much amount',10,1) --doesn't work, better error handling needed to be caught by backend code
 	end
 	
-	insert into Donation(Expense_id, Donor_id, [Timestamp], Amount) values(@donorId, @expenseId, GETDATE(), @donationAmount)
+	insert into Donation(Expense_id, Donor_id, [Timestamp], Amount) values(@expenseId, @donorId, GETDATE(), @donationAmount)
 	update need set [Balance Amount] = [Balance Amount] - @donationAmount where Id = @expenseId
 
 RETURN 0

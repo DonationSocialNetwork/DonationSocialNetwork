@@ -121,7 +121,7 @@ namespace DSN.Controllers
         {
             List<Message> messages = new List<Message>
             {
-                new Message {SenderName = "Pallavi", Body = "Thank you very much for donation."}
+                new Message {SenderName = "Akash", Body = "Thank you very much for donation."}
             };
             return View(messages);
         }

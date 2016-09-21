@@ -27,11 +27,11 @@
         </div>
         <div>
             <p>Do you wish to get this need fulfilled by our merchants after donations meet requested amount ?</p>
-            <label class="radio-inline" data-toggle="collapse" data-target="#demo"><input type="radio" name="optradio" id="yesButton">Yes</label>
-            <label class="radio-inline" data-toggle="collapse" data-target="#demo"><input type="radio" name="optradio">No</label>
+            <label class="radio-inline"><input type="radio" name="optradio" id="yesButton" onchange='$("#demo").show();'/>Yes</label>
+            <label class="radio-inline"><input type="radio" name="optradio" id="noButton" onchange='$("#demo").hide();'/>No</label>
         </div>
         <div class="well-lg">
-            <div id="demo" class="collapse">
+            <div id="demo"  style="display:none; ">
                 <div class="form-group">
                     <label>Commodity type:</label>
                     <input type="text" class="form-control col-md-3">
