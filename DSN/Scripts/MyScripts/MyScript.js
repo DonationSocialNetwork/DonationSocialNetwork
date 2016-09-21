@@ -14,5 +14,8 @@
 
 
 $("#check").click(function(){
-        $("#merchant").collapse('show');
+        $("#merchant").show();
+});
+$("#yesButton").click(function () {
+    $("#merchant").hide();
 });
