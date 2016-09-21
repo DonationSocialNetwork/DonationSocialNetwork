@@ -12,6 +12,7 @@
         <div>
             <a href="@Url.Action("UserProfile","Home", new { userId = item.Id})"><h1>@Html.DisplayFor(modelitem => item.Name)</h1></a>
             <p>@Html.DisplayFor(modelitem => item.Title) at @Html.DisplayFor(modelitem => item.Organisation)</p>
+            <a class="btn btn-success">Add to Network</a>
         </div>
     </div>
 }
@@ -24,6 +25,7 @@
         <div>
             <a href="@Url.Action("UserProfile","Home", new { userId = item.Id})"><h1>@Html.DisplayFor(modelitem => item.Name)</h1></a>
             <p>@Html.DisplayFor(modelitem => item.Description)</p>
+            <a class="btn btn-success">Add to Network</a>
         </div>
     </div>
 }
