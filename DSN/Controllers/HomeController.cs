@@ -116,6 +116,15 @@ namespace DSN.Controllers
         {
             return View();
         }
+
+        public ActionResult Notifications()
+        {
+            List<Message> messages = new List<Message>
+            {
+                new Message {SenderName = "Pallavi", Body = "Thank you very much for donation."}
+            };
+            return View(messages);
+        }
         
     }
 }
