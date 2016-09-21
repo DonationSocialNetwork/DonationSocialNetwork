@@ -1,0 +1,25 @@
+﻿@using DSN.Models
+@model List<Message>
+@{
+    //Layout = null;
+}
+
+
+<h2>Messages</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Sender</th>
+            <th>Message</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(x => item.SenderName)</td>
+                <td>@Html.DisplayFor(x => item.Body)</td>
+            </tr>    
+        }
+    </tbody>
+</table>
