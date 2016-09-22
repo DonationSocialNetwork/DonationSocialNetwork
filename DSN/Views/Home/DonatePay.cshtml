@@ -19,7 +19,7 @@
         <p class="col-xs-12"><b>Actual Amount: @Html.DisplayFor(modelitem => expense.ActualAmout)</b></p>
         
         <div class="col-xs-6"><input type="radio" name="payment" value="creditCard" onchange='$("#loyaltyPointsDiv").hide();$("#creditCardDiv").show();' checked="true"/> Pay by Visa Credit Card</div>
-        <div class="col-xs-6"><input type="radio" name="payment" value="loyaltyPoints" onchange='$("#creditCardDiv").hide();$("#loyaltyPointsDiv").show();'/> Pay by Visa Loyalty Points</div>
+        <div class="col-xs-6"><input type="radio" name="payment" value="loyaltyPoints" onchange='$("#creditCardDiv").hide();$("#loyaltyPointsDiv").show();'/> Pay with Visa Loyalty Points</div>
         <br /><br />
 
         <div id="creditCardDiv">
@@ -62,7 +62,7 @@
                 <br /><div style="text-align: center; margin-top: 10%;"><button style="width: 95%;">Donate</button></div>
             </form>
         </div>
-        
+
         <div id="loyaltyPointsDiv" style="display:none; " class="form-group col-xs-12">
             <label>Search for a merchant with whom you have Visa Loyalty Points</label>
             <input type="text" class="form-control" id="merchantSearchName" />
