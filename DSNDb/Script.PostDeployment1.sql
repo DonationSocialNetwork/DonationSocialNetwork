@@ -32,14 +32,14 @@ VALUES (2, 'individual')
 
 INSERT INTO [Individual]  
 VALUES 
- (2, 'Akash', 'Student', 'Kothari Primary School')
+ (2, 'Akash', 'Student', 'MTB School')
 , (3, 'Prerana', 'Student', 'Jnanpith School')
 , (4, 'Raghunath', 'Student', 'Golden Kids School')
 , (5, 'Samrudhdhi', 'Student', 'Navodaya School')
 , (6, 'Anup', 'Student', 'Vidya Mandir')
 , (7, 'Tushar', 'Student', 'Shivaji High School')
 , (8, 'Vishal', 'Student', 'Anjuman High school')
-,(9, 'Aditya', 'Student', 'MTB School')
+,(9, 'Aditya', 'Professional', 'VISA Inc.')
 ;
 
 INSERT INTO [Organization]
@@ -60,6 +60,6 @@ VALUES (9, 2)
 INSERT INTO [Need]
 VALUES (1, 2, 'School Dress', 'School Dress', 500, 500, 11, 'P', '20160930 11:59:00 PM')
 , (2, 2, 'Admission fees', 'Admission fees', 1000, 1000, 11, 'P', '20160930 11:59:00 PM')
-, (3, 9, 'Admission fees', 'Admission fees', 1000, 1000, 11, 'P', '20160930 11:59:00 PM')
+--, (3, 9, 'Admission fees', 'Admission fees', 1000, 1000, 11, 'P', '20160930 11:59:00 PM')
 ;
 
